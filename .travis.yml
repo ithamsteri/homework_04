@@ -8,12 +8,12 @@ before_script:
 
 script:
   # Install Boost Test Framework 1.54
-- sudo apt-get install -y -qq doxygen libboost-test1.54-dev
+- sudo apt-get install -y -qq graphviz doxygen libboost-test1.54-dev
 - cmake -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release .
 - cmake --build .
 - cmake --build . --target test
 - cmake --build . --target package
-- cat Doxyfile ; echo "PROJECT_NUMBER=0.0.${TRAVIS_BUILD_NUMBER}" | doxygen
+- doxygen Doxyfile
 deploy:
   - provider: pages
     skip-cleanup: true
