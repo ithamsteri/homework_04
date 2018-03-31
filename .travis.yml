@@ -13,7 +13,7 @@ script:
 - cmake --build .
 - cmake --build . --target test
 - cmake --build . --target package
-- cat Doxyfile ; echo "PROJECT_NUMBER=0.0.${TRAVIS_BUILD_NUMBER} | doxygen
+- `cat Doxyfile ; echo "PROJECT_NUMBER=0.0.${TRAVIS_BUILD_NUMBER} | doxygen`
 deploy:
   - provider: pages
     skip-cleanup: true
