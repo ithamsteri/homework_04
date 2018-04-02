@@ -13,7 +13,7 @@
 
 ### Документация
 
-Ссылка на документацию: [https://ithamsteri.github.io/homework_04/]
+Ссылка на документацию: https://ithamsteri.github.io/homework_04/
 
 ### Установка пакета
 

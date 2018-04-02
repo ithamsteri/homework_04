@@ -11,13 +11,17 @@
 #include <array>
 #include <iostream>
 #include <list>
+#include <type_traits>
 #include <vector>
 
 /// \brief Print IP address.
 /// \details Print IP address in stdout.
 /// \param value IP address for by byte print.
 /// \callergraph
-template <typename T> void print_ip(const T &value) {
+template <typename T>
+void print_ip(
+    const T &value,
+    typename std::enable_if<std::is_integral<T>::value, T>::type * = nullptr) {
   std::array<unsigned char, sizeof value> bytes;
   std::copy(
       static_cast<const unsigned char *>(static_cast<const void *>(&value)),
@@ -36,26 +40,23 @@ template <typename T> void print_ip(const T &value) {
 /// \brief Print IP address.
 /// \details Print IP address in stdout from std::string.
 /// \param str String as IP address for print.
-template <>
-void print_ip<std::string>(std::string const& str) {
-  std::cout << str << std::endl;
+template <typename T>
+void print_ip(const T &value,
+              typename std::enable_if<std::is_same<T, std::string>::value,
+                                      T>::type * = nullptr) {
+  std::cout << value << std::endl;
 }
 
 /// \brief Print IP address.
-/// \details Print IP address in stdout from std::vector container.
-/// \param vec Container std::vector with values for print.
+/// \details Print IP address in stdout from std::vector or std::list container.
+/// \param vec Container std::vector or std::list with values for print.
 template <typename T>
-void print_ip(const std::vector<T> &vec) {
-  for (const auto ip : vec)
-    print_ip(ip);
-}
-
-/// \brief Print IP address.
-/// \details Print IP address in stdout from std::list container.
-/// \param list Container std::list with values for print.
-template <typename T>
-void print_ip(const std::list<T> &list) {
-  for (const auto ip : list)
+void print_ip(const T &value,
+              typename std::enable_if<
+                  std::is_same<T, std::vector<typename T::value_type>>::value ||
+                      std::is_same<T, std::list<typename T::value_type>>::value,
+                  T>::type * = nullptr) {
+  for (const auto ip : value)
     print_ip(ip);
 }
 

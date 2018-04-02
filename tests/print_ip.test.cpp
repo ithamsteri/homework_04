@@ -6,8 +6,8 @@
 #define BOOST_TEST_MODULE PrintIpTest
 #include <boost/test/unit_test.hpp>
 
-#include <sstream>
 #include "print_ip.h"
+#include <sstream>
 
 /// \brief Test Fixture
 /// \details Test Fixture for interception console output from stdout.
@@ -19,9 +19,7 @@ struct SpyOutput {
   }
 
   /// \brief Destructor
-  ~SpyOutput() {
-    std::cout.rdbuf(_cout_streambuf);
-  }
+  ~SpyOutput() { std::cout.rdbuf(_cout_streambuf); }
 
   /// \brief Get output string from interception std::cout buffer.
   /// \return String with output data
@@ -29,7 +27,7 @@ struct SpyOutput {
 
 private:
   std::ostringstream _oss;
-  std::streambuf* _cout_streambuf;
+  std::streambuf *_cout_streambuf;
 };
 
 /// \test Check print char type
