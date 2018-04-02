@@ -97,6 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><code>#include &lt;array&gt;</code><br/>
 <code>#include &lt;iostream&gt;</code><br/>
 <code>#include &lt;list&gt;</code><br/>
+<code>#include &lt;type_traits&gt;</code><br/>
 <code>#include &lt;vector&gt;</code><br/>
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for print_ip.h:</div>
@@ -117,28 +118,24 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a2d821da577a381ad29bdc353325ab54f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a2d821da577a381ad29bdc353325ab54f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="print__ip_8h.html#a2d821da577a381ad29bdc353325ab54f">print_ip</a> (const T &amp;value)</td></tr>
-<tr class="memdesc:a2d821da577a381ad29bdc353325ab54f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print IP address.  <a href="#a2d821da577a381ad29bdc353325ab54f">More...</a><br/></td></tr>
-<tr class="separator:a2d821da577a381ad29bdc353325ab54f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa82f0d99f1e683c36bfd811eb1835e0"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
-<tr class="memitem:afa82f0d99f1e683c36bfd811eb1835e0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="print__ip_8h.html#afa82f0d99f1e683c36bfd811eb1835e0">print_ip&lt; std::string &gt;</a> (std::string const &amp;str)</td></tr>
-<tr class="memdesc:afa82f0d99f1e683c36bfd811eb1835e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print IP address.  <a href="#afa82f0d99f1e683c36bfd811eb1835e0">More...</a><br/></td></tr>
-<tr class="separator:afa82f0d99f1e683c36bfd811eb1835e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe8c626fe1e33482a1ec417c64ee3155"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:afe8c626fe1e33482a1ec417c64ee3155"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="print__ip_8h.html#afe8c626fe1e33482a1ec417c64ee3155">print_ip</a> (const std::vector&lt; T &gt; &amp;vec)</td></tr>
-<tr class="memdesc:afe8c626fe1e33482a1ec417c64ee3155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print IP address.  <a href="#afe8c626fe1e33482a1ec417c64ee3155">More...</a><br/></td></tr>
-<tr class="separator:afe8c626fe1e33482a1ec417c64ee3155"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8c538481deed8bd84c621e2d774ba4f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ab8c538481deed8bd84c621e2d774ba4f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="print__ip_8h.html#ab8c538481deed8bd84c621e2d774ba4f">print_ip</a> (const std::list&lt; T &gt; &amp;list)</td></tr>
-<tr class="memdesc:ab8c538481deed8bd84c621e2d774ba4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print IP address.  <a href="#ab8c538481deed8bd84c621e2d774ba4f">More...</a><br/></td></tr>
-<tr class="separator:ab8c538481deed8bd84c621e2d774ba4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e2dfb4e07731b28d38f2d1a85700f1d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a2e2dfb4e07731b28d38f2d1a85700f1d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="print__ip_8h.html#a2e2dfb4e07731b28d38f2d1a85700f1d">print_ip</a> (const T &amp;value, typename std::enable_if&lt; std::is_integral&lt; T &gt;::value, T &gt;::type *=nullptr)</td></tr>
+<tr class="memdesc:a2e2dfb4e07731b28d38f2d1a85700f1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print IP address.  <a href="#a2e2dfb4e07731b28d38f2d1a85700f1d">More...</a><br/></td></tr>
+<tr class="separator:a2e2dfb4e07731b28d38f2d1a85700f1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3be729bfe530baf9405559ac53a0840"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ac3be729bfe530baf9405559ac53a0840"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="print__ip_8h.html#ac3be729bfe530baf9405559ac53a0840">print_ip</a> (const T &amp;value, typename std::enable_if&lt; std::is_same&lt; T, std::string &gt;::value, T &gt;::type *=nullptr)</td></tr>
+<tr class="memdesc:ac3be729bfe530baf9405559ac53a0840"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print IP address.  <a href="#ac3be729bfe530baf9405559ac53a0840">More...</a><br/></td></tr>
+<tr class="separator:ac3be729bfe530baf9405559ac53a0840"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34165f00380e22eea27b24ca882455b7"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a34165f00380e22eea27b24ca882455b7"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="print__ip_8h.html#a34165f00380e22eea27b24ca882455b7">print_ip</a> (const T &amp;value, typename std::enable_if&lt; std::is_same&lt; T, std::vector&lt; typename T::value_type &gt;&gt;::value||std::is_same&lt; T, std::list&lt; typename T::value_type &gt;&gt;::value, T &gt;::type *=nullptr)</td></tr>
+<tr class="memdesc:a34165f00380e22eea27b24ca882455b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print IP address.  <a href="#a34165f00380e22eea27b24ca882455b7">More...</a><br/></td></tr>
+<tr class="separator:a34165f00380e22eea27b24ca882455b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Header file with IP address print functions. </p>
 <p>This file contain some function for printing IP addresses from many types. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a2d821da577a381ad29bdc353325ab54f"></a>
+<a class="anchor" id="a2e2dfb4e07731b28d38f2d1a85700f1d"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -148,8 +145,18 @@ template&lt;typename T &gt; </div>
           <td class="memname">void print_ip </td>
           <td>(</td>
           <td class="paramtype">const T &amp;&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">typename std::enable_if&lt; std::is_integral&lt; T &gt;::value, T &gt;::type *&#160;</td>
+          <td class="paramname"> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -166,15 +173,15 @@ template&lt;typename T &gt; </div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="print__ip_8h_a2d821da577a381ad29bdc353325ab54f_icgraph.png" border="0" usemap="#print__ip_8h_a2d821da577a381ad29bdc353325ab54f_icgraph" alt=""/></div>
-<map name="print__ip_8h_a2d821da577a381ad29bdc353325ab54f_icgraph" id="print__ip_8h_a2d821da577a381ad29bdc353325ab54f_icgraph">
-<area shape="rect" id="node2" href="main_8cpp.html#a81ce304348a420752ee080480d2b3095" title="Main function. " alt="" coords="201,5,252,32"/><area shape="rect" id="node3" href="print__ip_8h.html#afe8c626fe1e33482a1ec417c64ee3155" title="Print IP address. " alt="" coords="195,56,259,83"/><area shape="rect" id="node4" href="print__ip_8test_8cpp.html#abb485f7763daa72073defd7efdea1455" title="BOOST_FIXTURE_TEST_CASE" alt="" coords="117,107,336,133"/></map>
+<div class="center"><img src="print__ip_8h_a2e2dfb4e07731b28d38f2d1a85700f1d_icgraph.png" border="0" usemap="#print__ip_8h_a2e2dfb4e07731b28d38f2d1a85700f1d_icgraph" alt=""/></div>
+<map name="print__ip_8h_a2e2dfb4e07731b28d38f2d1a85700f1d_icgraph" id="print__ip_8h_a2e2dfb4e07731b28d38f2d1a85700f1d_icgraph">
+<area shape="rect" id="node2" href="main_8cpp.html#a81ce304348a420752ee080480d2b3095" title="Main function. " alt="" coords="201,5,252,32"/><area shape="rect" id="node3" href="print__ip_8h.html#a34165f00380e22eea27b24ca882455b7" title="Print IP address. " alt="" coords="195,56,259,83"/><area shape="rect" id="node4" href="print__ip_8test_8cpp.html#abb485f7763daa72073defd7efdea1455" title="BOOST_FIXTURE_TEST_CASE" alt="" coords="117,107,336,133"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="afe8c626fe1e33482a1ec417c64ee3155"></a>
+<a class="anchor" id="ac3be729bfe530baf9405559ac53a0840"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -183,63 +190,19 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">void print_ip </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
-          <td class="paramname"><em>vec</em></td><td>)</td>
-          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Print IP address. </p>
-<p>Print IP address in stdout from std::vector container. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">vec</td><td>Container std::vector with values for print. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ab8c538481deed8bd84c621e2d774ba4f"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-      <table class="memname">
         <tr>
-          <td class="memname">void print_ip </td>
-          <td>(</td>
-          <td class="paramtype">const std::list&lt; T &gt; &amp;&#160;</td>
-          <td class="paramname"><em>list</em></td><td>)</td>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">typename std::enable_if&lt; std::is_same&lt; T, std::string &gt;::value, T &gt;::type *&#160;</td>
+          <td class="paramname"> = <code>nullptr</code>&#160;</td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Print IP address. </p>
-<p>Print IP address in stdout from std::list container. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">list</td><td>Container std::list with values for print. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="afa82f0d99f1e683c36bfd811eb1835e0"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="print__ip_8h.html#ab8c538481deed8bd84c621e2d774ba4f">print_ip</a>&lt; std::string &gt; </td>
-          <td>(</td>
-          <td class="paramtype">std::string const &amp;&#160;</td>
-          <td class="paramname"><em>str</em></td><td>)</td>
           <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -249,6 +212,43 @@ template&lt;&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">str</td><td>String as IP address for print. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a34165f00380e22eea27b24ca882455b7"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void print_ip </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename std::enable_if&lt; std::is_same&lt; T, std::vector&lt; typename T::value_type &gt;&gt;::value||std::is_same&lt; T, std::list&lt; typename T::value_type &gt;&gt;::value, T &gt;::type *&#160;</td>
+          <td class="paramname"> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Print IP address. </p>
+<p>Print IP address in stdout from std::vector or std::list container. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>Container std::vector or std::list with values for print. </td></tr>
   </table>
   </dd>
 </dl>
