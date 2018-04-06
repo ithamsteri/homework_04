@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['print_5fip',['print_ip',['../print__ip_8h.html#aa09060f1b297da4d09f09d354b66757b',1,'print_ip(const T &amp;value):&#160;print_ip.h'],['../print__ip_8h.html#a33ed9f735f64862906ee8d05398835fe',1,'print_ip(const T &amp;value):&#160;print_ip.h'],['../print__ip_8h.html#a84d0015324ec5e8b6de2a05676b33b9c',1,'print_ip(const T &amp;value):&#160;print_ip.h']]]
+  ['print_5fip',['print_ip',['../print__ip_8h.html#a8711f0feb7bb037c76f5405afbf43814',1,'print_ip(const T &amp;value):&#160;print_ip.h'],['../print__ip_8h.html#a3ad0eae435774cb3406a11cd0303ec0c',1,'print_ip(const std::string &amp;str):&#160;print_ip.h'],['../print__ip_8h.html#a127903f98782bb43faf59689d8d1fc06',1,'print_ip(const T &amp;value):&#160;print_ip.h']]]
 ];
