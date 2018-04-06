@@ -20,7 +20,7 @@
 /// \param value IP address for by byte print.
 /// \callergraph
 template<typename T>
-std::enable_if<std::is_integral<T>::value, void>::type
+typename std::enable_if<std::is_integral<T>::value, void>::type
 print_ip(const T& value)
 {
   auto pLow = reinterpret_cast<const unsigned char*>(&value);
@@ -44,9 +44,9 @@ print_ip(const std::string& str)
 /// \details Print IP address in stdout from std::vector or std::list container.
 /// \param vec Container std::vector or std::list with values for print.
 template<typename T>
-std::enable_if<std::is_same<std::vector<typename T::value_type>, T>::value ||
-                 std::is_same<std::list<typename T::value_type>, T>::value,
-               void>::type
+typename std::enable_if<std::is_same<std::vector<typename T::value_type>, T>::value ||
+                          std::is_same<std::list<typename T::value_type>, T>::value,
+                        void>::type
 print_ip(const T& value)
 {
   for (const auto& ip : value)
