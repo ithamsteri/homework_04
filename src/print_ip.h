@@ -15,13 +15,15 @@
 #include <type_traits>
 #include <vector>
 
+using std::enable_if_t;
+using std::is_integral_v;
+using std::is_same_v;
+
 /// \brief Print IP address.
 /// \details Print IP address in stdout.
 /// \param value IP address for by byte print.
 /// \callergraph
-template <typename T>
-void print_ip(const T &value,
-              typename std::enable_if<std::is_integral<T>::value, T>::type * = nullptr) {
+template <typename T> void print_ip(const T &value, enable_if_t<is_integral_v<T>, T> * = nullptr) {
   auto pbegin = reinterpret_cast<const unsigned char *>(&value);
   auto pend = reinterpret_cast<const unsigned char *>(&value) + sizeof(value);
 
@@ -33,8 +35,7 @@ void print_ip(const T &value,
 /// \details Print IP address in stdout from std::string.
 /// \param str String as IP address for print.
 template <typename T>
-void print_ip(const T &value,
-              typename std::enable_if<std::is_same<T, std::string>::value, T>::type * = nullptr) {
+void print_ip(const T &value, enable_if_t<is_same_v<std::string, T>, T> * = nullptr) {
   std::cout << value << std::endl;
 }
 
@@ -42,11 +43,10 @@ void print_ip(const T &value,
 /// \details Print IP address in stdout from std::vector or std::list container.
 /// \param vec Container std::vector or std::list with values for print.
 template <typename T>
-void print_ip(const T &value,
-              typename std::enable_if<std::is_same<T, std::vector<typename T::value_type>>::value ||
-                                          std::is_same<T, std::list<typename T::value_type>>::value,
-                                      T>::type * = nullptr) {
-  for (const auto ip : value)
+void print_ip(const T &value, enable_if_t<is_same_v<std::vector<typename T::value_type>, T> ||
+                                              is_same_v<std::list<typename T::value_type>, T>,
+                                          T> * = nullptr) {
+  for (const auto &ip : value)
     print_ip(ip);
 }
 

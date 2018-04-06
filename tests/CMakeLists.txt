@@ -7,7 +7,7 @@ if (BUILD_TESTING)
   )
 
   set_target_properties(printip_test PROPERTIES
-          CXX_STANDARD 14
+          CXX_STANDARD 17
           CXX_STANDARD_REQUIRED ON
           COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
           INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIRS}
