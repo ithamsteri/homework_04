@@ -34,11 +34,12 @@ template<typename T>
 enable_if_t<is_integral_v<T>, void>
 print_ip(const T& value)
 {
-  auto pbegin = reinterpret_cast<const unsigned char*>(&value);
-  auto pend = reinterpret_cast<const unsigned char*>(&value) + sizeof(value);
+  auto pLow = reinterpret_cast<const unsigned char*>(&value);
+  auto pHigh = reinterpret_cast<const unsigned char*>(&value) + sizeof(value);
 
-  std::reverse_copy(pbegin + 1, pend, std::ostream_iterator<int>(std::cout, "."));
-  std::cout << static_cast<int>(*pbegin) << std::endl;
+  // print value from high byte to low byte
+  std::reverse_copy(pLow + 1, pHigh, std::ostream_iterator<int>(std::cout, "."));
+  std::cout << static_cast<int>(*pLow) << std::endl;
 }
 
 /// \brief Print IP address.
