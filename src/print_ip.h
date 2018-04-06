@@ -15,19 +15,27 @@
 #include <type_traits>
 #include <vector>
 
-using std::enable_if_t;
+// For C++14 helper functions.
+// NOTE: Clang 5.0.0 not know about std::enable_if_t helper
+template<bool B, class T = void>
+using enable_if_t = typename std::enable_if<B, T>::type;
 
-// For C++14 helper functions
-template <class T, class U> constexpr bool is_same_v = std::is_same<T, U>::value;
-template <class T> constexpr bool is_integral_v = std::is_integral<T>::value;
+template<class T, class U>
+constexpr bool is_same_v = std::is_same<T, U>::value;
+
+template<class T>
+constexpr bool is_integral_v = std::is_integral<T>::value;
 
 /// \brief Print IP address.
 /// \details Print IP address in stdout.
 /// \param value IP address for by byte print.
 /// \callergraph
-template <typename T> void print_ip(const T &value, enable_if_t<is_integral_v<T>, T> * = nullptr) {
-  auto pbegin = reinterpret_cast<const unsigned char *>(&value);
-  auto pend = reinterpret_cast<const unsigned char *>(&value) + sizeof(value);
+template<typename T>
+enable_if_t<is_integral_v<T>, void>
+print_ip(const T& value)
+{
+  auto pbegin = reinterpret_cast<const unsigned char*>(&value);
+  auto pend = reinterpret_cast<const unsigned char*>(&value) + sizeof(value);
 
   std::reverse_copy(pbegin + 1, pend, std::ostream_iterator<int>(std::cout, "."));
   std::cout << static_cast<int>(*pbegin) << std::endl;
@@ -36,19 +44,21 @@ template <typename T> void print_ip(const T &value, enable_if_t<is_integral_v<T>
 /// \brief Print IP address.
 /// \details Print IP address in stdout from std::string.
 /// \param str String as IP address for print.
-template <typename T>
-void print_ip(const T &value, enable_if_t<is_same_v<std::string, T>, T> * = nullptr) {
+template<typename T>
+enable_if_t<is_same_v<std::string, T>, void>
+print_ip(const T& value)
+{
   std::cout << value << std::endl;
 }
 
 /// \brief Print IP address.
 /// \details Print IP address in stdout from std::vector or std::list container.
 /// \param vec Container std::vector or std::list with values for print.
-template <typename T>
-void print_ip(const T &value, enable_if_t<is_same_v<std::vector<typename T::value_type>, T> ||
-                                              is_same_v<std::list<typename T::value_type>, T>,
-                                          T> * = nullptr) {
-  for (const auto &ip : value)
+template<typename T>
+enable_if_t<is_same_v<std::vector<typename T::value_type>, T> || is_same_v<std::list<typename T::value_type>, T>, void>
+print_ip(const T& value)
+{
+  for (const auto& ip : value)
     print_ip(ip);
 }
 
