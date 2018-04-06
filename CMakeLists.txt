@@ -19,7 +19,7 @@ add_executable(print_ip
 )
 
 set_target_properties(print_ip PROPERTIES
-        CXX_STANDARD 17
+        CXX_STANDARD 14
         CXX_STANDARD_REQUIRED ON
 )
 

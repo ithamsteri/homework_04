@@ -16,8 +16,10 @@
 #include <vector>
 
 using std::enable_if_t;
-using std::is_integral_v;
-using std::is_same_v;
+
+// For C++14 helper functions
+template <class T, class U> constexpr bool is_same_v = std::is_same<T, U>::value;
+template <class T> constexpr bool is_integral_v = std::is_integral<T>::value;
 
 /// \brief Print IP address.
 /// \details Print IP address in stdout.
