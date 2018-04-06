@@ -20,7 +20,7 @@
 /// \brief Main function.
 /// \details Here start program from this function.
 /// \return Error code
-int main(int, char* []) {
+int main(int, char *[]) {
   print_ip(static_cast<char>(-1));
   print_ip(static_cast<short>(0));
   print_ip(2130706433);
