@@ -32,18 +32,37 @@ private:
   std::streambuf* _cout_streambuf;
 };
 
+/// \test Check print bool type
+BOOST_FIXTURE_TEST_CASE(PrintBool, SpyOutput)
+{
+  print_ip(true);
+  print_ip(false);
+  BOOST_CHECK_EQUAL(getOutput(),
+                    "1\n"
+                    "0\n");
+}
+
 /// \test Check print char type
 BOOST_FIXTURE_TEST_CASE(PrintChar, SpyOutput)
 {
   print_ip(static_cast<char>(-1));
-  BOOST_CHECK_EQUAL(getOutput(), "255\n");
+  print_ip(static_cast<char>(0));
+  print_ip(static_cast<char>(1));
+  BOOST_CHECK_EQUAL(getOutput(),
+                    "255\n"
+                    "0\n"
+                    "1\n");
 }
 
 /// \test Check print short type
 BOOST_FIXTURE_TEST_CASE(PrintShort, SpyOutput)
 {
   print_ip(static_cast<short>(0));
-  BOOST_CHECK_EQUAL(getOutput(), "0.0\n");
+  print_ip(static_cast<short>(1));
+  print_ip(static_cast<short>(256));
+  BOOST_CHECK_EQUAL(getOutput(), "0.0\n"
+                                 "0.1\n"
+                                 "1.0\n");
 }
 
 /// \test Check print int type
