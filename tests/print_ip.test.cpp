@@ -81,7 +81,10 @@ BOOST_AUTO_TEST_CASE(PrintVector)
 BOOST_AUTO_TEST_CASE(PrintList)
 {
   TEST_STDOUT(print_ip(std::list<bool>{}), "");
-  TEST_STDOUT(print_ip(std::list<char>{ -10, 42, 127 }), "246\n42\n127\n");
+  TEST_STDOUT(print_ip(std::list<char>{ -10, 42, 127 }),
+              "246\n"
+              "42\n"
+              "127\n");
 }
 
 BOOST_AUTO_TEST_CASE(PrintNestContainer)
@@ -91,7 +94,10 @@ BOOST_AUTO_TEST_CASE(PrintNestContainer)
               "127.0.0.1\n"
               "77.73.142.211\n"
               "255.255.255.255\n");
-  TEST_STDOUT(print_ip(std::vector<std::list<bool>>{ { true }, { false }, { true } }), "1\n0\n1\n");
+  TEST_STDOUT(print_ip(std::vector<std::list<bool>>{ { true }, { false }, { true } }),
+              "1\n"
+              "0\n"
+              "1\n");
 }
 
 BOOST_AUTO_TEST_CASE(PrintTuple)
