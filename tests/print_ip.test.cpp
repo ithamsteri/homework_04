@@ -9,114 +9,94 @@
 #include "print_ip.h"
 #include <sstream>
 
-/// \brief Test Fixture
-/// \details Test Fixture for interception console output from stdout.
-struct SpyOutput
+/// \brief Function for interception from stdout to string.
+/// \param f function where intercept output to stdout
+/// \return string with intercepted data
+static std::string
+outputSpy(const std::function<void()>& f)
 {
-  /// \brief Constuctor
-  SpyOutput()
-  {
-    _cout_streambuf = std::cout.rdbuf();
-    std::cout.rdbuf(_oss.rdbuf());
-  }
+  std::ostringstream oss;
+  std::streambuf* cout_streambuf = std::cout.rdbuf();
 
-  /// \brief Destructor
-  ~SpyOutput() { std::cout.rdbuf(_cout_streambuf); }
+  std::cout.rdbuf(oss.rdbuf());
+  f();
+  std::cout.rdbuf(cout_streambuf);
 
-  /// \brief Get output string from interception std::cout buffer.
-  /// \return String with output data
-  std::string getOutput() { return _oss.str(); }
-
-private:
-  std::ostringstream _oss;
-  std::streambuf* _cout_streambuf;
-};
-
-/// \test Check print bool type
-BOOST_FIXTURE_TEST_CASE(PrintBool, SpyOutput)
-{
-  print_ip(true);
-  print_ip(false);
-  BOOST_CHECK_EQUAL(getOutput(),
-                    "1\n"
-                    "0\n");
+  return oss.str();
 }
 
-/// \test Check print char type
-BOOST_FIXTURE_TEST_CASE(PrintChar, SpyOutput)
+#define TEST_STDOUT(f, r) BOOST_CHECK_EQUAL(outputSpy([]() { f; }), r)
+
+BOOST_AUTO_TEST_CASE(PrintBool)
 {
-  print_ip(static_cast<char>(-1));
-  print_ip(static_cast<char>(0));
-  print_ip(static_cast<char>(1));
-  BOOST_CHECK_EQUAL(getOutput(),
-                    "255\n"
-                    "0\n"
-                    "1\n");
+  TEST_STDOUT(print_ip(true), "1\n");
+  TEST_STDOUT(print_ip(false), "0\n");
 }
 
-/// \test Check print short type
-BOOST_FIXTURE_TEST_CASE(PrintShort, SpyOutput)
+BOOST_AUTO_TEST_CASE(PrintChar)
 {
-  print_ip(static_cast<short>(0));
-  print_ip(static_cast<short>(1));
-  print_ip(static_cast<short>(256));
-  BOOST_CHECK_EQUAL(getOutput(), "0.0\n"
-                                 "0.1\n"
-                                 "1.0\n");
+  TEST_STDOUT(print_ip(static_cast<char>(-1)), "255\n");
+  TEST_STDOUT(print_ip(static_cast<char>(0)), "0\n");
+  TEST_STDOUT(print_ip(static_cast<char>(1)), "1\n");
 }
 
-/// \test Check print int type
-BOOST_FIXTURE_TEST_CASE(PrintInt, SpyOutput)
+BOOST_AUTO_TEST_CASE(PrintShort)
 {
-  print_ip(2130706433);
-  BOOST_CHECK_EQUAL(getOutput(), "127.0.0.1\n");
+  TEST_STDOUT(print_ip(static_cast<short>(-1)), "255.255\n");
+  TEST_STDOUT(print_ip(static_cast<short>(0)), "0.0\n");
+  TEST_STDOUT(print_ip(static_cast<short>(1)), "0.1\n");
+  TEST_STDOUT(print_ip(static_cast<short>(256)), "1.0\n");
+  TEST_STDOUT(print_ip(static_cast<short>(257)), "1.1\n");
 }
 
-/// \test Check print long type
-BOOST_FIXTURE_TEST_CASE(PrintLong, SpyOutput)
+BOOST_AUTO_TEST_CASE(PrintInt)
 {
-  print_ip(8875824491850138409L);
-  BOOST_CHECK_EQUAL(getOutput(), "123.45.67.89.101.112.131.41\n");
+  TEST_STDOUT(print_ip(0x7F000001), "127.0.0.1\n");
+  TEST_STDOUT(print_ip(0x00000000), "0.0.0.0\n");
+  TEST_STDOUT(print_ip(0xFFFFFFFF), "255.255.255.255\n");
 }
 
-/// \test Check print std::string type
-BOOST_FIXTURE_TEST_CASE(PrintString, SpyOutput)
+BOOST_AUTO_TEST_CASE(PrintLong)
 {
-  print_ip(std::string{ "192.168.10.52" });
-  BOOST_CHECK_EQUAL(getOutput(), "192.168.10.52\n");
+  TEST_STDOUT(print_ip(0x7B2D435965708329L), "123.45.67.89.101.112.131.41\n");
+  TEST_STDOUT(print_ip(0UL), "0.0.0.0.0.0.0.0\n");
+  TEST_STDOUT(print_ip(0xFFFFFFFFFFFFFFFFL), "255.255.255.255.255.255.255.255\n");
 }
 
-/// \test Check print values from std::vector container
-BOOST_FIXTURE_TEST_CASE(PrintVector, SpyOutput)
+BOOST_AUTO_TEST_CASE(PrintString)
 {
-  print_ip(std::vector<int>{ 2130706433, 2130706532, 2130706434 });
-  BOOST_CHECK_EQUAL(getOutput(), "127.0.0.1\n127.0.0.100\n127.0.0.2\n");
+  TEST_STDOUT(print_ip(std::string{ "192.168.10.52" }), "192.168.10.52\n");
+  TEST_STDOUT(print_ip(std::string{ "print string as is" }), "print string as is\n");
 }
 
-/// \test Check print values from std::list container
-BOOST_FIXTURE_TEST_CASE(PrintList, SpyOutput)
+BOOST_AUTO_TEST_CASE(PrintVector)
 {
-  print_ip(std::list<char>{ -10, 42, 127 });
-  BOOST_CHECK_EQUAL(getOutput(), "246\n42\n127\n");
+  TEST_STDOUT(print_ip(std::vector<char>{}), "");
+  TEST_STDOUT(print_ip(std::vector<unsigned>{ 0x7F000001, 0x4D498ED3, 0xFFFFFFFF }),
+              "127.0.0.1\n"
+              "77.73.142.211\n"
+              "255.255.255.255\n");
 }
 
-/// \test Check nested container in container
-BOOST_FIXTURE_TEST_CASE(PrintNestContainer, SpyOutput)
+BOOST_AUTO_TEST_CASE(PrintList)
 {
-  print_ip(std::list<std::vector<int>>{ { 2130706433 }, { 2130706532 }, { 2130706434 } });
-  print_ip(std::vector<std::list<int>>{ { 2130706433 }, { 2130706532 }, { 2130706434 } });
-  print_ip(std::list<std::list<int>>{ { 2130706433 }, { 2130706532 }, { 2130706434 } });
-  print_ip(std::vector<std::vector<int>>{ { 2130706433 }, { 2130706532 }, { 2130706434 } });
-  BOOST_CHECK_EQUAL(getOutput(),
-                    "127.0.0.1\n127.0.0.100\n127.0.0.2\n"
-                    "127.0.0.1\n127.0.0.100\n127.0.0.2\n"
-                    "127.0.0.1\n127.0.0.100\n127.0.0.2\n"
-                    "127.0.0.1\n127.0.0.100\n127.0.0.2\n");
+  TEST_STDOUT(print_ip(std::list<bool>{}), "");
+  TEST_STDOUT(print_ip(std::list<char>{ -10, 42, 127 }), "246\n42\n127\n");
 }
 
-/// \test Check print values from std::tuple
-BOOST_FIXTURE_TEST_CASE(PrintTuple, SpyOutput)
+BOOST_AUTO_TEST_CASE(PrintNestContainer)
 {
-  print_ip(std::tuple<unsigned, unsigned>(0x7F000001, 0xFFFFFFFF));
-  BOOST_CHECK_EQUAL(getOutput(), "127.0.0.1\n255.255.255.255\n");
+  TEST_STDOUT(print_ip(std::vector<std::vector<std::string>>{ { "192.168.1.1" } }), "192.168.1.1\n");
+  TEST_STDOUT(print_ip(std::list<std::vector<unsigned>>{ { 0x7F000001 }, { 0x4D498ED3, 0xFFFFFFFF } }),
+              "127.0.0.1\n"
+              "77.73.142.211\n"
+              "255.255.255.255\n");
+  TEST_STDOUT(print_ip(std::vector<std::list<bool>>{ { true }, { false }, { true } }), "1\n0\n1\n");
+}
+
+BOOST_AUTO_TEST_CASE(PrintTuple)
+{
+  TEST_STDOUT(print_ip(std::tuple<unsigned, unsigned>(0x7F000001, 0xFFFFFFFF)),
+              "127.0.0.1\n"
+              "255.255.255.255\n");
 }
