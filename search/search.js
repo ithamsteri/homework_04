@@ -7,13 +7,13 @@
 
 var indexSectionsWithContent =
 {
-  0: "bcgimopstv~",
-  1: "ips",
+  0: "bcimoptv",
+  1: "ip",
   2: "cmp",
-  3: "bgmops~",
+  3: "bmop",
   4: "v",
-  5: "b",
-  6: "it"
+  5: "bt",
+  6: "i"
 };
 
 var indexSectionNames =
