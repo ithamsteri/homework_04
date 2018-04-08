@@ -113,3 +113,10 @@ BOOST_FIXTURE_TEST_CASE(PrintNestContainer, SpyOutput)
                     "127.0.0.1\n127.0.0.100\n127.0.0.2\n"
                     "127.0.0.1\n127.0.0.100\n127.0.0.2\n");
 }
+
+/// \test Check print values from std::tuple
+BOOST_FIXTURE_TEST_CASE(PrintTuple, SpyOutput)
+{
+  print_ip(std::tuple<unsigned, unsigned>(0x7F000001, 0xFFFFFFFF));
+  BOOST_CHECK_EQUAL(getOutput(), "127.0.0.1\n255.255.255.255\n");
+}

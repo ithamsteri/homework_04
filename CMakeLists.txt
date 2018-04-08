@@ -14,13 +14,14 @@ set(SOURCE_PATH "${PROJECT_SOURCE_DIR}/src")
 
 # make executable file for application
 add_executable(print_ip
-        ${SOURCE_PATH}/main.cpp
-        ${SOURCE_PATH}/print_ip.h
+    ${SOURCE_PATH}/main.cpp
+    ${SOURCE_PATH}/print_ip.h
+    ${SOURCE_PATH}/check_tuple.h
 )
 
 set_target_properties(print_ip PROPERTIES
-        CXX_STANDARD 14
-        CXX_STANDARD_REQUIRED ON
+    CXX_STANDARD 14
+    CXX_STANDARD_REQUIRED ON
 )
 
 install(TARGETS print_ip RUNTIME DESTINATION bin)

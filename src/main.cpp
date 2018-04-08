@@ -30,6 +30,7 @@ main(int, char* [])
   print_ip(std::string{ "192.168.10.52" });
   print_ip(std::vector<int>{ 2130706433, 2130706532, 2130706433 });
   print_ip(std::list<char>{ -10, 42, 127 });
+  print_ip(std::make_tuple(2130706433, 2130706532, 2130706433));
 
   return 0;
 }

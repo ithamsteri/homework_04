@@ -8,6 +8,7 @@
 #ifndef PRINT_IP_H
 #define PRINT_IP_H
 
+#include "check_tuple.h"
 #include <algorithm>
 #include <iostream>
 #include <iterator>
@@ -52,5 +53,39 @@ print_ip(const T& value)
   for (const auto& ip : value)
     print_ip(ip);
 }
+
+template<int index, typename... Ts>
+struct print_tuple
+{
+  void operator()(const std::tuple<Ts...>& t)
+  {
+    print_tuple<index - 1, Ts...>{}(t);
+    print_ip(std::get<index>(t));
+  }
+};
+
+template<typename... Ts>
+struct print_tuple<0, Ts...>
+{
+  void operator()(const std::tuple<Ts...>& t) { print_ip(std::get<0>(t)); }
+};
+
+template<typename... Ts>
+void
+print(const std::tuple<Ts...>& t)
+{
+  const auto size = std::tuple_size<std::tuple<Ts...>>::value;
+  print_tuple<size - 1, Ts...>{}(t);
+}
+
+/// \brief Print IP address.
+/// \details Print IP address in stdout from std::tuple if all types is equal.
+/// \param tuple Tuple with values for print.
+template<typename T, typename... Ts>
+typename std::enable_if<is_onetype_tuple<T>::value, void>::type
+print_ip(const T& tuple)
+{
+  print(tuple);
+};
 
 #endif // PRINT_IP_H
