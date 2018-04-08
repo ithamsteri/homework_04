@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -86,6 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">print_ip.h File Reference</div>  </div>
@@ -94,7 +95,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>Header file with IP address print functions.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;algorithm&gt;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="check__tuple_8h_source.html">check_tuple.h</a>&quot;</code><br/>
+<code>#include &lt;algorithm&gt;</code><br/>
 <code>#include &lt;iostream&gt;</code><br/>
 <code>#include &lt;iterator&gt;</code><br/>
 <code>#include &lt;list&gt;</code><br/>
@@ -105,7 +107,7 @@ Include dependency graph for print_ip.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="print__ip_8h__incl.png" border="0" usemap="#src_2print__ip_8h" alt=""/></div>
 <map name="src_2print__ip_8h" id="src_2print__ip_8h">
-</map>
+<area shape="rect" id="node2" href="check__tuple_8h.html" title="Header file for compile&#45;time checking type of std::tuple. " alt="" coords="5,80,107,107"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -117,6 +119,13 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="print__ip_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprint__tuple.html">print_tuple&lt; index, Ts &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprint__tuple_3_010_00_01Ts_8_8_8_4.html">print_tuple&lt; 0, Ts...&gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a8711f0feb7bb037c76f5405afbf43814"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
@@ -137,11 +146,38 @@ T::value_type &gt;, T &gt;::value, <br class="typebreak"/>
 void &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="print__ip_8h.html#a127903f98782bb43faf59689d8d1fc06">print_ip</a> (const T &amp;value)</td></tr>
 <tr class="memdesc:a127903f98782bb43faf59689d8d1fc06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print IP address.  <a href="#a127903f98782bb43faf59689d8d1fc06">More...</a><br/></td></tr>
 <tr class="separator:a127903f98782bb43faf59689d8d1fc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54d46b202f963216604da44f69397bb7"><td class="memTemplParams" colspan="2">template&lt;typename... Ts&gt; </td></tr>
+<tr class="memitem:a54d46b202f963216604da44f69397bb7"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="print__ip_8h.html#a54d46b202f963216604da44f69397bb7">print</a> (const std::tuple&lt; Ts...&gt; &amp;t)</td></tr>
+<tr class="separator:a54d46b202f963216604da44f69397bb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bfbb8e753c397846c26816b49ebba79"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Ts&gt; </td></tr>
+<tr class="memitem:a7bfbb8e753c397846c26816b49ebba79"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if<br class="typebreak"/>
+&lt; <a class="el" href="structis__onetype__tuple.html">is_onetype_tuple</a>&lt; T &gt;::value, <br class="typebreak"/>
+void &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="print__ip_8h.html#a7bfbb8e753c397846c26816b49ebba79">print_ip</a> (const T &amp;tuple)</td></tr>
+<tr class="memdesc:a7bfbb8e753c397846c26816b49ebba79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print IP address.  <a href="#a7bfbb8e753c397846c26816b49ebba79">More...</a><br/></td></tr>
+<tr class="separator:a7bfbb8e753c397846c26816b49ebba79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Header file with IP address print functions. </p>
 <p>This file contain some function for printing IP addresses from many types. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a54d46b202f963216604da44f69397bb7"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void print </td>
+          <td>(</td>
+          <td class="paramtype">const std::tuple&lt; Ts...&gt; &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a8711f0feb7bb037c76f5405afbf43814"></a>
 <div class="memitem">
 <div class="memproto">
@@ -172,7 +208,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="print__ip_8h_a8711f0feb7bb037c76f5405afbf43814_icgraph.png" border="0" usemap="#print__ip_8h_a8711f0feb7bb037c76f5405afbf43814_icgraph" alt=""/></div>
 <map name="print__ip_8h_a8711f0feb7bb037c76f5405afbf43814_icgraph" id="print__ip_8h_a8711f0feb7bb037c76f5405afbf43814_icgraph">
-<area shape="rect" id="node2" href="main_8cpp.html#a81ce304348a420752ee080480d2b3095" title="Main function. " alt="" coords="201,5,252,32"/><area shape="rect" id="node3" href="print__ip_8h.html#a127903f98782bb43faf59689d8d1fc06" title="Print IP address. " alt="" coords="195,56,259,83"/><area shape="rect" id="node4" href="print__ip_8test_8cpp.html#acc9fa8809ada31a2da1c8dfee167e500" title="BOOST_FIXTURE_TEST_CASE" alt="" coords="117,107,336,133"/></map>
+<area shape="rect" id="node2" href="main_8cpp.html#a81ce304348a420752ee080480d2b3095" title="Main function. " alt="" coords="201,5,252,32"/><area shape="rect" id="node3" href="print__ip_8h.html#a127903f98782bb43faf59689d8d1fc06" title="Print IP address. " alt="" coords="195,56,259,83"/><area shape="rect" id="node4" href="structprint__tuple.html#a686770e7b8eb33a8a94d976977be1016" title="print_tuple::operator()" alt="" coords="154,107,299,133"/><area shape="rect" id="node5" href="structprint__tuple_3_010_00_01Ts_8_8_8_4.html#a4a96810e772a3ee3db9638ed41b547c8" title="print_tuple\&lt; 0, Ts...\&gt;\l::operator()" alt="" coords="155,158,299,199"/><area shape="rect" id="node6" href="print__ip_8test_8cpp.html#acc9fa8809ada31a2da1c8dfee167e500" title="BOOST_FIXTURE_TEST_CASE" alt="" coords="117,224,336,251"/></map>
 </div>
 </p>
 
@@ -224,6 +260,33 @@ template&lt;typename T &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">vec</td><td>Container std::vector or std::list with values for print. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a7bfbb8e753c397846c26816b49ebba79"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;<a class="el" href="structis__onetype__tuple.html">is_onetype_tuple</a>&lt;T&gt;::value, void&gt;::type print_ip </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>tuple</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Print IP address. </p>
+<p>Print IP address in stdout from std::tuple if all types is equal. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tuple</td><td>Tuple with values for print. </td></tr>
   </table>
   </dd>
 </dl>

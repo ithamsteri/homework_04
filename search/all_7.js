@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7espyoutput',['~SpyOutput',['../structSpyOutput.html#ad10721d40488d5aff9f607d8b4108f3b',1,'SpyOutput']]]
+  ['spyoutput',['SpyOutput',['../structSpyOutput.html',1,'SpyOutput'],['../structSpyOutput.html#ac4d0aaf33853cb4afd144e8032348d01',1,'SpyOutput::SpyOutput()']]]
 ];
