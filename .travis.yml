@@ -1,14 +1,22 @@
 dist: trusty
 sudo: required
 language: cpp
-compiler: clang
+compiler: gcc
 
-before_script:
-- sudo apt-get update -qq
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-8
+      - doxygen
+      - graphviz
+      - libboost-test1.54-dev
+      - cmake
 
 script:
-  # Install Boost Test Framework 1.54
-- sudo apt-get install -y -qq graphviz doxygen libboost-test1.54-dev
+- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
+- sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 90
 - cmake -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release .
 - cmake --build .
 - cmake --build . --target test
@@ -24,5 +32,7 @@ deploy:
       branch: master
   - provider: script
     skip_cleanup: true
+    on:
+      branch: master
     script:
     - curl -T print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -uithamsteri:$BINTRAY_API_KEY "https://api.bintray.com/content/hamsterisoftware/deb-repo/print_ip/0.0.$TRAVIS_BUILD_NUMBER/pool/main/p/print_ip-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1;override=1"
