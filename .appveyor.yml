@@ -1,0 +1,42 @@
+version: 1.0.{build}-{branch}
+
+image: Visual Studio 2017
+platform:
+  - Win64
+configuration:
+  - Debug
+  - Release
+
+# disable build for 'gh-pages' branch
+branches:
+  except:
+    - gh-pages
+
+shallow_clone: true
+clone_folder: c:\projects\otus_homework
+
+environment:
+  BOOST_ROOT: C:\Libraries\boost_1_67_0
+  BOOST_LIBRARYDIR: C:\Libraries\boost_1_67_0\lib64-msvc-14.1
+  PATH: "%BOOST_LIBRARYDIR%;%PATH%"
+
+before_build:
+  - echo "Running cmake... for %APPVEYOR_BUILD_WORKER_IMAGE% %PLATFORM% %CONFIGURATION%" 
+  - cmake --version
+
+build_script:
+  - cmake -H"%APPVEYOR_BUILD_FOLDER%" -Bbuild -G "Visual Studio 15 2017 %PLATFORM%" -DCMAKE_BUILD_TYPE=%CONFIGURATION% -DBUILD_TESTING=ON -DBUILD_SHARED_LIBS=ON -DBOOST_ROOT="%BOOST_ROOT%"
+  - cmake --build build
+
+test_script:
+  - set CTEST_OUTPUT_ON_FAILURE=ON
+  - cd build
+  - ctest -V
+
+notifications:
+- provider: Email
+  to:
+  - '{{commitAuthorEmail}}'
+  on_build_success: false
+  on_build_failure: true
+  on_build_status_changed: true

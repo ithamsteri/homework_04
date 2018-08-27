@@ -11,7 +11,7 @@ if (BUILD_TESTING)
         CXX_STANDARD_REQUIRED ON
         COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
         INCLUDE_DIRECTORIES "${Boost_INCLUDE_DIRS};${SOURCE_PATH}"
-        LINK_LIBRARIES ${Boost_LIBRARIES}
+        LINK_LIBRARIES Boost::unit_test_framework
     )
 
     add_test(PrintIpTest printip_test)
