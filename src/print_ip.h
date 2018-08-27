@@ -13,6 +13,7 @@
 #include <iostream>
 #include <iterator>
 #include <list>
+#include <string>
 #include <type_traits>
 #include <vector>
 
@@ -21,7 +22,7 @@
 /// \param value IP address for by byte print.
 /// \callergraph
 template<typename T>
-typename std::enable_if<std::is_integral<T>::value, void>::type
+typename std::enable_if_t<std::is_integral_v<T>, void>
 print_ip(const T& value)
 {
   auto pLow = reinterpret_cast<const unsigned char*>(&value);
@@ -45,9 +46,9 @@ print_ip(const std::string& str)
 /// \details Print IP address in stdout from std::vector or std::list container.
 /// \param vec Container std::vector or std::list with values for print.
 template<typename T>
-typename std::enable_if<std::is_same<std::vector<typename T::value_type>, T>::value ||
-                          std::is_same<std::list<typename T::value_type>, T>::value,
-                        void>::type
+typename std::enable_if_t<std::is_same_v<std::vector<typename T::value_type, typename T::allocator_type>, T> ||
+                            std::is_same_v<std::list<typename T::value_type, typename T::allocator_type>, T>,
+                          void>
 print_ip(const T& value)
 {
   for (const auto& ip : value)
@@ -82,7 +83,7 @@ print(const std::tuple<Ts...>& t)
 /// \details Print IP address in stdout from std::tuple if all types is equal.
 /// \param tuple Tuple with values for print.
 template<typename T, typename... Ts>
-typename std::enable_if<is_onetype_tuple<T>::value, void>::type
+typename std::enable_if_t<is_onetype_tuple<T>::value, void>
 print_ip(const T& tuple)
 {
   print(tuple);

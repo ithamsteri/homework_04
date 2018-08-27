@@ -1,6 +1,7 @@
 ## Домашнее задание 04
 
 [![Build Status](https://travis-ci.org/ithamsteri/homework_04.svg?branch=master)](https://travis-ci.org/ithamsteri/homework_04)
+[![Build status](https://ci.appveyor.com/api/projects/status/rjupgyvtg7ehdku1?svg=true)](https://ci.appveyor.com/project/ithamsteri/homework-04)
 
 **Цель:** Создание и публикация документации с помощью Doxygen и Travis CI.
 
