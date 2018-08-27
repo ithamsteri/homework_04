@@ -58,9 +58,15 @@ BOOST_AUTO_TEST_CASE(PrintInt)
 
 BOOST_AUTO_TEST_CASE(PrintLong)
 {
-  TEST_STDOUT(print_ip(0x7B2D435965708329L), "123.45.67.89.101.112.131.41\n");
-  TEST_STDOUT(print_ip(0UL), "0.0.0.0.0.0.0.0\n");
-  TEST_STDOUT(print_ip(0xFFFFFFFFFFFFFFFFL), "255.255.255.255.255.255.255.255\n");
+  if (sizeof(long) == 4) { // LLP64 (Windows systems)
+    TEST_STDOUT(print_ip(0x65708329L), "101.112.131.41\n");
+    TEST_STDOUT(print_ip(0UL), "0.0.0.0\n");
+    TEST_STDOUT(print_ip(0xFFFFFFFFL), "255.255.255.255\n");
+  } else { // ILP64 or LP64 (Linux or MacOS)
+    TEST_STDOUT(print_ip(0x7B2D435965708329L), "123.45.67.89.101.112.131.41\n");
+    TEST_STDOUT(print_ip(0UL), "0.0.0.0.0.0.0.0\n");
+    TEST_STDOUT(print_ip(0xFFFFFFFFFFFFFFFFL), "255.255.255.255.255.255.255.255\n");
+  }
 }
 
 BOOST_AUTO_TEST_CASE(PrintString)
