@@ -13,6 +13,7 @@
 #include <iostream>
 #include <iterator>
 #include <list>
+#include <string>
 #include <type_traits>
 #include <vector>
 
